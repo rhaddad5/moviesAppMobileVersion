@@ -27,9 +27,9 @@ export default function SearchInput() {
         />
       </View>
       <Button
-      onPress={searchMovies}
-      title="Search"
-      color="white"
+        onPress={searchMovies}
+        title="Search"
+        color="white"
       />
     </View>
   )

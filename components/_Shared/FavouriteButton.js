@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {View} from "react-native";
+import {View, TouchableOpacity} from "react-native";
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faStar as fasStar} from '@fortawesome/free-solid-svg-icons';
@@ -24,7 +24,10 @@ export default function FavouriteButton({movieTitle, movieDate, movieId, movieOv
 
   return(
     <View>
-    {fav ? <FontAwesomeIcon icon={fasStar} onClick={toggleFavStatus}/> : <FontAwesomeIcon icon={farStar} onClick={toggleFavStatus}/>}
+      <TouchableOpacity
+        onPress={toggleFavStatus}>
+        {fav ? <FontAwesomeIcon icon={fasStar}/> : <FontAwesomeIcon icon={farStar}/>}
+      </TouchableOpacity>
     </View>
   )
 }
