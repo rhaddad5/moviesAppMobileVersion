@@ -1,0 +1,12 @@
+{
+  "name": "moviesAppReact",
+  "displayName": "moviesAppReact",
+  "expo": {
+    "name": "moviesAppReact",
+    "slug": "moviesAppReact",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
