@@ -21,10 +21,12 @@ export default function MovieDetails({route, navigation}) {
     <View style={styles.cardContainer}>
       <Image
         source={{uri:`https://image.tmdb.org/t/p/original/${movieInfo.poster_path}`}} style={styles.image}/>
-      <Text>{movieInfo.title}</Text>
-      <Text>{movieInfo.release_date}</Text>
-      {(getAccessToken !== undefined) ? <FavouriteButton movieTitle={movieInfo.title} movieDate={movieInfo.release_date} movieId={movieInfo.id} movieOverview={movieInfo.overview} movieImagePath={`https://image.tmdb.org/t/p/original/${movieInfo.poster_path}`}/>  : ""}
-      <Text>{movieInfo.overview}</Text>
+      <View style={styles.contentContainer}>
+        <Text style={styles.title}>{movieInfo.title}</Text>
+        <Text style={styles.date}>{movieInfo.release_date}</Text>
+        {(getAccessToken !== undefined) ? <FavouriteButton movieTitle={movieInfo.title} movieDate={movieInfo.release_date} movieId={movieInfo.id} movieOverview={movieInfo.overview} movieImagePath={`https://image.tmdb.org/t/p/original/${movieInfo.poster_path}`}/>  : ""}
+        <Text style={styles.overview}>{movieInfo.overview}</Text>
+      </View>
     </View>
   )
 }
@@ -34,10 +36,38 @@ const styles = StyleSheet.create({
     width: 300,
     height: 400,
   },
-  cardContainer: {
-    flex: 1,
+  contentContainer: {
     alignItems: "center",
-  }
+  },
+  cardContainer: {
+    backgroundColor: "white",
+    alignItems: "center",
+    borderWidth: 1,
+    borderRadius: 2,
+    borderColor: '#F4F6F6',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    elevation: 5,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 15,
+  },
+  overview: {
+    marginVertical: 5,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 30,
+    marginVertical: 5,
+  },
+  date: {
+    opacity: 0.7,
+    marginVertical: 5,
+  },
 })
 
 
