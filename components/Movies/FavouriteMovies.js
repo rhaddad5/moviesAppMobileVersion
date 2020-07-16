@@ -1,22 +1,44 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {getFavouriteMovies} from "../../API/FavouriteMovie";
 import {View, Text, FlatList, StyleSheet, Image, TouchableOpacity} from "react-native";
-import MovieDetails from "./MovieDetails";
+import {useDispatch, useSelector} from "react-redux";
+import {getUsername} from "../../API/SessionInfo";
+import {fetchUsername} from "../../redux/actions";
+import {useFocusEffect} from "@react-navigation/native";
 
-export default function MoviesList({movies, navigation}) {
+export default function FavouriteMovies({navigation}) {
+
+  const dispatch = useDispatch();
+
+  const getStoredUsername = async () => {
+    const username = await getUsername();
+    dispatch(fetchUsername(username));
+  };
+
+  useEffect(() => {
+    getStoredUsername();
+  }, []);
+
+  useFocusEffect(() => {
+    getFavouriteMovies(dispatch);
+    getStoredUsername();
+  }, []);
+
+  const favouriteMovies = useSelector(state => state.movieFavReducer);
+  const username = useSelector(state => state.userReducer);
 
   const _renderMovie = ({item}) => {
-
     return(
       <TouchableOpacity
         onPress={() => {navigation.navigate("MovieDetails", {
-              id: item.id
+              id: item.tmdbId
             })}}
       >
         <View style={styles.cardContainer}>
           <Image
-            source={{uri:`https://image.tmdb.org/t/p/original/${item.poster_path}`}} style={styles.image}/>
+            source={{uri:`${item.imagePath}`}} style={styles.image}/>
           <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.date}>{item.release_date}</Text>
+          <Text style={styles.date}>{item.releaseDate}</Text>
           <Text style={styles.overview}>{item.overview}</Text>
         </View>
       </TouchableOpacity>
@@ -25,8 +47,9 @@ export default function MoviesList({movies, navigation}) {
 
   return(
     <View>
+      {(favouriteMovies !== []) ? <Text>Hi {username}! Here are your favourite movies</Text> : <Text>Hi {username}! You don't have any movies in your list yet</Text>}
       <FlatList
-        data={movies}
+        data={favouriteMovies}
         renderItem={_renderMovie}
         keyExtractor={item => item.id}
       />

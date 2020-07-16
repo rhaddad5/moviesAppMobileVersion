@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {signup} from "../../API/Signup";
 import {View, Text, TextInput, Button, StyleSheet} from "react-native";
 
-export default function Login() {
+export default function Login({navigation}) {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -22,6 +22,7 @@ export default function Login() {
 
   const createUser = () => {
     signup(username, email, password);
+    navigation.navigate("Login");
   };
 
   return(

@@ -1,5 +1,5 @@
 import axios from "axios";
-import {fetchFavouriteMovies} from "../../redux/actions";
+import {fetchFavouriteMovies, fetchFavouriteMovie} from "../../redux/actions";
 import {getAccessToken} from "../SessionInfo";
 
 export const saveFavouriteMovie = async (title, releaseDate, id, overview, imagePath) => {
@@ -20,7 +20,19 @@ export const destroyFavouriteMovie = (id) => {
 export const getFavouriteMovies = async (dispatch) => {
   const token = await getAccessToken();
   const headers = {"Authorization": `Bearer ${token}`};
-  axios.get("http://localhost:8000/movies",  {headers: headers})
-  .then((res) => dispatch(fetchFavouriteMovies(res.data)))
+  axios.get("http://localhost:8000/movies", {headers: headers})
+  .then((res) => {
+    dispatch(fetchFavouriteMovies(res.data))
+  })
   .catch((e) => console.log("ERREUR GET FAV", e))
 };
+
+// export const getFavouriteMovie = async (id, dispatch) => {
+//   const token = await getAccessToken();
+//   const headers = {"Authorization": `Bearer ${token}`};
+//   axios.get(`http://localhost:8000/movies/${id}`, {headers: headers})
+//   .then((res) => {
+//     console.log("REPONSE GET MOVIE", res);
+//   })
+//   .catch((e) => console.log("ERREUR GET FAV", e))
+// };

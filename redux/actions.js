@@ -18,3 +18,17 @@ export const fetchFavouriteMovies = (data) => ({
     data
   }
 });
+
+export const checkFavouriteMovie = (data) => ({
+  type: "CHECK_MOVIE",
+  payload: {
+    data
+  }
+});
+
+export const fetchUsername = (data) => ({
+  type: "ADD_USERNAME",
+  payload: {
+    data
+  }
+});

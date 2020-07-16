@@ -4,6 +4,7 @@ import {movieDetailsSearch} from "../../API/MovieSearch";
 import {StyleSheet, Text, View, Image} from 'react-native';
 import FavouriteButton from "../_Shared/FavouriteButton";
 import {getAccessToken} from "../../API/SessionInfo";
+import {useFocusEffect} from "@react-navigation/native";
 
 export default function MovieDetails({route, navigation}) {
 
@@ -11,7 +12,7 @@ export default function MovieDetails({route, navigation}) {
 
   const {id} = route.params;
 
-  useEffect(() => {
+  useFocusEffect(() => {
     movieDetailsSearch(id, dispatch);
   }, []);
 

@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {login} from "../../API/Login";
 import {View, Text, TextInput, Button, StyleSheet} from "react-native";
+import {getAccessToken, getUsername} from "../../API/SessionInfo";
 
-export default function Login() {
+export default function Login({navigation}) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,6 +18,9 @@ export default function Login() {
 
   const loginUser = () => {
     login(email, password);
+    if((getAccessToken() !== undefined) && (getUsername() !== undefined)) {
+      navigation.navigate("LoggedIn");
+    }
   };
 
   return(
