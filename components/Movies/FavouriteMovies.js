@@ -4,7 +4,7 @@ import {View, Text, FlatList, StyleSheet, Image, TouchableOpacity} from "react-n
 import {useDispatch, useSelector} from "react-redux";
 import {getUsername} from "../../API/SessionInfo";
 import {fetchUsername} from "../../redux/actions";
-import {useFocusEffect} from "@react-navigation/native";
+import {useFocusEffect, Link} from "@react-navigation/native";
 
 export default function FavouriteMovies({navigation}) {
 
@@ -47,7 +47,7 @@ export default function FavouriteMovies({navigation}) {
 
   return(
     <View>
-      {(favouriteMovies !== []) ? <Text>Hi {username}! Here are your favourite movies</Text> : <Text>Hi {username}! You don't have any movies in your list yet</Text>}
+      {favouriteMovies[0] ? <Text style={styles.welcomeTitle}>Hi {username}! Here are your favourite movies</Text> : <Text style={styles.welcomeTitle}>Hi {username}! You don't have any movies in your list yet, click <Link to="/MoviesContainer" style={styles.link}>here</Link> to add some</Text>}
       <FlatList
         data={favouriteMovies}
         renderItem={_renderMovie}
@@ -93,5 +93,14 @@ const styles = StyleSheet.create({
   date: {
     opacity: 0.7,
     marginVertical: 5,
+  },
+  welcomeTitle: {
+    fontWeight: "bold",
+    fontSize: 35,
+    textAlign: "center",
+    opacity: 0.8,
+  },
+  link: {
+    opacity: 0.5,
   },
 })
