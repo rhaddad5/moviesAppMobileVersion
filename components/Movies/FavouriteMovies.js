@@ -47,7 +47,7 @@ export default function FavouriteMovies({navigation}) {
 
   return(
     <View>
-      {favouriteMovies[0] ? <Text style={styles.welcomeTitle}>Hi {username}! Here are your favourite movies</Text> : <Text style={styles.welcomeTitle}>Hi {username}! You don't have any movies in your list yet, click <Link to="/MoviesContainer" style={styles.link}>here</Link> to add some</Text>}
+      {favouriteMovies[0] ? <Text style={styles.welcomeTitleWithMovies}>Hi {username}! Here are your favourite movies</Text> : <Text style={styles.welcomeTitleWithoutMovies}>Hi {username}! You don't have any movies in your list yet, click <Link to="/MoviesContainer" style={styles.link}>here</Link> to add some</Text>}
       <FlatList
         data={favouriteMovies}
         renderItem={_renderMovie}
@@ -94,11 +94,18 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     marginVertical: 5,
   },
-  welcomeTitle: {
+  welcomeTitleWithMovies: {
     fontWeight: "bold",
     fontSize: 35,
     textAlign: "center",
     opacity: 0.8,
+  },
+  welcomeTitleWithoutMovies: {
+    fontWeight: "bold",
+    fontSize: 35,
+    textAlign: "center",
+    opacity: 0.8,
+    marginVertical: "50%",
   },
   link: {
     opacity: 0.5,
