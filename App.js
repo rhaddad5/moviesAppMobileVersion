@@ -11,11 +11,11 @@ import Logout from "./components/Logout/Logout";
 import Signup from "./components/Signup/Signup";
 import Home from "./components/Home/Home";
 import FavouriteMovies from "./components/Movies/FavouriteMovies";
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {getAccessToken, getUsername, clearAsyncStorage} from "./API/SessionInfo";
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 function LoggedIn() {
 
@@ -25,10 +25,12 @@ function LoggedIn() {
   };
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator activeColor="#f0edf6"
+      inactiveColor="#a3282c"
+      barStyle={{backgroundColor: "#4E1214"}}>
       <Tab.Screen name="MoviesContainer" component={MoviesContainer} options={{title: "Home"}}/>
       <Tab.Screen name="FavouriteMovies" component={FavouriteMovies} options={{title: "My Movies"}}/>
-      <Tab.Screen name="Logout" component={Logout} options={{title: "Log out"}} listeners={ ({ navigation, route }) => ({
+      <Tab.Screen name="Logout" component={Logout} options={{title: "Log out"}} listeners={({navigation, route}) => ({
           tabPress: e => {
               e.preventDefault()
               clearAsyncStorage()

@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     fontSize: 35,
     textAlign: "center",
     opacity: 0.8,
+    color: "#4E1214",
   },
   welcomeTitleWithoutMovies: {
     fontWeight: "bold",
@@ -105,6 +106,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     opacity: 0.8,
     marginVertical: "50%",
+    color: "#4E1214",
   },
   link: {
     opacity: 0.5,
