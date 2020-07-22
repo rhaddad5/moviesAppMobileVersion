@@ -63,9 +63,11 @@ export const storeUsername = async (value) => {
 export const clearAsyncStorage = async() => {
   try {
     await AsyncStorage.removeItem("username")
+    console.log("Username cleared from storage")
     await AsyncStorage.removeItem("accessToken")
+    console.log("Token cleared from storage")
   } catch (e) {
-    console.log("error clearing storage", e)
+    console.log("Error clearing storage", e)
   }
 }
 

@@ -5,7 +5,9 @@ export const login = (email, password) => {
   axios.post("http://localhost:8000/users/login", {email: email, password: password})
   .then((res) => {
     storeAccessToken(res.data.accessToken);
+    console.log("Access token stored", res.data.accessToken);
     storeUsername(res.data.username);
+    console.log("Username stored", res.data.username);
     console.log("login done")
   })
   .catch((e) => console.log("ERREUR LOGIN POST", e))

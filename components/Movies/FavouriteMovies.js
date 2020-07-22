@@ -21,7 +21,6 @@ export default function FavouriteMovies({navigation}) {
 
   useFocusEffect(() => {
     getFavouriteMovies(dispatch);
-    getStoredUsername();
   }, []);
 
   const favouriteMovies = useSelector(state => state.movieFavReducer);

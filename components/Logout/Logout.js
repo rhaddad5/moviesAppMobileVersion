@@ -1,12 +1,6 @@
-import React, {useEffect} from "react";
-import {removeAccessToken, removeUsername, clearAsyncStorage} from "../../API/SessionInfo";
+import React from "react";
 
 export default function Logout({navigation}) {
-
-  useEffect(() => {
-    clearAsyncStorage()
-    navigation.navigate("Home");
-  }, []);
 
   return(
     null

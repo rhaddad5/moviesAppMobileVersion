@@ -12,17 +12,30 @@ import Signup from "./components/Signup/Signup";
 import Home from "./components/Home/Home";
 import FavouriteMovies from "./components/Movies/FavouriteMovies";
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {getAccessToken, getUsername} from "./API/SessionInfo";
+import {getAccessToken, getUsername, clearAsyncStorage} from "./API/SessionInfo";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function LoggedIn() {
+
+  const onPressLogout = () => {
+    clearAsyncStorage()
+    navigation.navigate("Home");
+  };
+
   return (
     <Tab.Navigator>
       <Tab.Screen name="MoviesContainer" component={MoviesContainer} options={{title: "Home"}}/>
       <Tab.Screen name="FavouriteMovies" component={FavouriteMovies} options={{title: "My Movies"}}/>
-      <Tab.Screen name="Logout" component={Logout} options={{title: "Log out"}}/>
+      <Tab.Screen name="Logout" component={Logout} options={{title: "Log out"}} listeners={ ({ navigation, route }) => ({
+          tabPress: e => {
+              e.preventDefault()
+              clearAsyncStorage()
+              navigation.navigate("Home")
+          }
+        })
+      }/>
     </Tab.Navigator>
   );
 }
