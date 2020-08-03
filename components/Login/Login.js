@@ -7,6 +7,7 @@ export default function Login({navigation}) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleChangeEmail = (value) => {
     setEmail(value);
@@ -17,14 +18,27 @@ export default function Login({navigation}) {
   };
 
   const loginUser = () => {
-    login(email, password);
-    if((getAccessToken() !== undefined) && (getUsername() !== undefined)) {
-      navigation.navigate("LoggedIn");
-    }
+    console.log("coucou")
+    login(email, password)
+    .then(data => {
+      console.log(data)
+      if(data.status !== 200) {
+        setErrorMessage(data.data)
+      } else {
+        if((getAccessToken() !== undefined) && (getUsername() !== undefined)) {
+          navigation.navigate("LoggedIn");
+        }
+      }
+    })
   };
 
   return(
     <View style={styles.container}>
+      {errorMessage &&
+        (<View style={styles.flashContainer}>
+          <Text style={styles.flashText}>{errorMessage}</Text>
+        </View>)
+      }
       <TextInput
         style={styles.input}
         onChangeText={handleChangeEmail}
@@ -62,5 +76,17 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     marginBottom: 10,
   },
+  flashContainer: {
+    backgroundColor: "white",
+    paddingHorizontal: 120,
+    paddingVertical: 12,
+    borderRadius: 10,
+    marginBottom: 50,
+    borderColor: "#FFC65A",
+    borderWidth: 2,
+  },
+  flashText: {
+    color: "black",
+  }
 });
 

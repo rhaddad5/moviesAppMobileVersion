@@ -1,12 +1,24 @@
 {
-  "name": "moviesAppReact",
-  "displayName": "moviesAppReact",
+  "name": "Movie Database App",
+  "displayName": "movieDatabaseAppReact",
   "expo": {
     "name": "moviesAppReact",
     "slug": "moviesAppReact",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "orientation": "portrait",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "icon": "./assets/images/favicon.ico",
+    "ios": {
+      "bundleIdentifier": "com.roxaneh.moviedatabaseappreact"
+    },
+    "android": {
+      "package": "com.roxaneh.moviedatabaseappreact"
+    }
   }
 }
