@@ -45,7 +45,7 @@ export default function FavouriteMovies({navigation}) {
   };
 
   return(
-    <View>
+    <View style={styles.container}>
       {favouriteMovies[0] ? <Text style={styles.welcomeTitleWithMovies}>Hi {username}! Here are your favourite movies</Text> : <Text style={styles.welcomeTitleWithoutMovies}>Hi {username}! You don't have any movies in your list yet, click <Link to="/MoviesContainer" style={styles.link}>here</Link> to add some</Text>}
       <FlatList
         data={favouriteMovies}
@@ -57,6 +57,9 @@ export default function FavouriteMovies({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   image: {
     width: 300,
     height: 400,

@@ -55,7 +55,7 @@ export default function Login({navigation}) {
       <Button
         onPress={loginUser}
         title="Login"
-        style={styles.button}
+        color="#4E1214"
       />
     </View>
   )
@@ -87,6 +87,6 @@ const styles = StyleSheet.create({
   },
   flashText: {
     color: "black",
-  }
+  },
 });
 
