@@ -1,5 +1,5 @@
 import React from "react";
-import {View, Text, StyleSheet, ImageBackground, Button} from "react-native";
+import {View, Text, StyleSheet, ImageBackground, Button, Platform} from "react-native";
 
 export default function HomeBanner({navigation}) {
   return(
@@ -11,12 +11,12 @@ export default function HomeBanner({navigation}) {
           <Button
             onPress={() => {navigation.navigate("Login")}}
             title="Login"
-            color="white"
+            color={Platform.OS === "ios" ? "white" : "#4E1214"}
           />
           <Button
             onPress={() => {navigation.navigate("Signup")}}
             title="Signup"
-            color="white"
+            color={Platform.OS === "ios" ? "white" : "#4E1214"}
           />
         </View>
       </ImageBackground>
@@ -49,9 +49,13 @@ const styles = StyleSheet.create({
     textShadowRadius: 3,
   },
   buttonsContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     paddingTop: 30,
+    ...Platform.select({
+              android: {
+                justifyContent: "space-evenly",
+              },
+            }),
   },
 })

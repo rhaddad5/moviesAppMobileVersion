@@ -78,7 +78,7 @@ export default function Login({navigation}) {
       <Button
         onPress={createUser}
         title="Signup"
-        style={styles.button}
+        color="#4E1214"
       />
     </View>
   )
